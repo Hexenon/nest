@@ -32,8 +32,8 @@ let kafkaPackage: any = {};
 export class ClientKafka extends ClientProxy {
   protected readonly logger = new Logger(ClientKafka.name);
   private client: Kafka = null;
-  private consumer: Consumer = null;
-  private producer: Producer = null;
+  public consumer: Consumer = null;
+  public producer: Producer = null;
   private readonly brokers: string[];
   private readonly clientId: string;
   private readonly groupId: string;
