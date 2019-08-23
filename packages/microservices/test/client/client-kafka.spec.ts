@@ -8,7 +8,6 @@ import { SinonStub } from 'sinon';
 
 describe('ClientKafka', () => {
   let client: ClientKafka;
-  let callback: sinon.SinonSpy;
   let connect: sinon.SinonSpy;
   let subscribe: sinon.SinonSpy;
   let run: sinon.SinonSpy;
@@ -63,5 +62,11 @@ describe('ClientKafka', () => {
     await client.close();
     expect(client.producer).to.be.null;
     expect(client.consumer).to.be.null;
+  });
+  it('addMessageRequest & bindTopics', async () => {
+    client.addMessageRequest('topic', 'topic.reply');
+    await client.connect();
+    expect(subscribe.called).to.be.true;
+    expect(run.called).to.be.true;
   });
 });
